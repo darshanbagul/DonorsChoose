@@ -14,7 +14,7 @@ COLLECTION_NAME = 'projects'
 FIELDS = {'school_state': True, 'resource_type': True, 'poverty_level': True, 'date_posted': True, 'total_donations': True, '_id': False}
 
 
-@app.route("/donorschooseViz")
+@app.route("/donorschoose")
 def index():
     return render_template("index.html")
 
@@ -26,6 +26,7 @@ def donorschoose_projects():
     projects = collection.find({},FIELDS, limit=100000)
     json_projects = []
     for project in projects:
+	print project
         json_projects.append(project)
     json_projects = json.dumps(json_projects, default=json_util.default)
     connection.close()
